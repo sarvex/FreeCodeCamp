@@ -24,7 +24,7 @@ import getFromDisk$ from '../utils/getFromDisk$';
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isBeta = !!process.env.BETA;
-const log = debug('freecc:challenges');
+const log = debug('fcc:challenges');
 const challengesRegex = /^(bonfire|waypoint|zipline|basejump|checkpoint)/i;
 const challengeView = {
   0: 'challenges/showHTML',
