@@ -17,6 +17,14 @@ export default function prodErrorHandler() {
     if (res.statusCode < 400) {
       res.statusCode = 500;
     }
+    let formatedErr;
+    try {
+      formatedErr = JSON.stringify(err);
+    } catch (e) {
+      formatedErr = err && err.message ?
+        err.message + '/n' + err.stack :
+        err;
+    }
 
     // parse res type
     var accept = accepts(req);
@@ -28,13 +36,15 @@ export default function prodErrorHandler() {
         req.flash('errors', {
           msg: message
         });
+        req.flash('formatedErr', formatedErr);
       }
       return res.redirect('/map');
       // json
     } else if (type === 'json') {
       res.setHeader('Content-Type', 'application/json');
       return res.send({
-        message: message
+        message: message,
+        err: formatedErr
       });
       // plain text
     } else {
