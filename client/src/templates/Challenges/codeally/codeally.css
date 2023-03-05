@@ -1,0 +1,7 @@
+.ca-description {
+  font-family: 'Lato', sans-serif;
+}
+
+button[aria-described-by='codeally-cookie-warning'] {
+  font-size: 1.1rem;
+}
